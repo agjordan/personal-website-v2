@@ -51,7 +51,21 @@ export default {
           5: "hsl(var(--chart-5))",
         },
       },
+      keyframes: {
+        appear: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
+      },
+      animation: {
+        appear: "appear 1s ease-in-out",
+      },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
   plugins: [require("tailwindcss-animate")],
 };
