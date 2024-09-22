@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 import { PropsWithChildren } from "react";
-import { Particles } from "@/components/particles/particles";
+import { ShapeCanvas } from "@/components/particles/shapeCanvas";
 
 export function Layout({ children }: PropsWithChildren) {
   return (
-    <div className={cn("flex w-screen h-screen")}>
-      {children}
-      <Particles />
+    <div className={cn("flex w-screen h-screen min-h-0 overflow-y-auto")}>
+      <ShapeCanvas />
+      <div className="flex flex-1">{children}</div>
     </div>
   );
 }
