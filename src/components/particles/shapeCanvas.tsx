@@ -2,13 +2,25 @@ import { useEffect, useRef, useState } from "react";
 import { Canvas } from "../canvas";
 
 import { Cube } from "./cube";
+import { useTheme } from "../theme-provider";
 
 export function ShapeCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   const [canvas, setCanvas] = useState(canvasRef.current);
   const [random, setRandom] = useState(true);
   const [clicked, setClicked] = useState(false);
   const context = canvas?.getContext("2d");
+
+  const { theme } = useTheme();
+
+  let darkMode = false;
+
+  if (theme === "system") {
+    darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  } else {
+    darkMode = theme === "dark";
+  }
 
   useEffect(() => {
     const animationFrame = requestAnimationFrame(render);
@@ -37,6 +49,7 @@ export function ShapeCanvas() {
 
     function render(animationFrame: number) {
       if (context) {
+        context.fillStyle = darkMode ? "yellow" : "purple";
         cube.move(animationFrame, random);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         cube.draw(random);
@@ -50,11 +63,11 @@ export function ShapeCanvas() {
       cancelAnimationFrame(animationFrame);
       doc?.removeEventListener("click", handleClick);
     };
-  }, [canvas, clicked, context, random]);
+  }, [canvas, clicked, context, random, darkMode]);
 
   return (
     <Canvas
-      className="absolute -z-10 opacity-55"
+      className="absolute -z-10 opacity-60"
       canvasref={canvasRef}
       height={window.innerHeight}
       width={window.innerWidth}

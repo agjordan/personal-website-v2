@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout/layout";
 import { Separator } from "@/components/ui/separator";
+import { ModeToggle } from "./components/mode-toggle";
 
 type Section = "about" | "experience" | "projects";
 
@@ -12,9 +13,12 @@ export default function App() {
   return (
     <Layout>
       <div className="flex flex-col p-10">
-        <p className="flex items-center align-middle text-lg">
-          alex <sup>j</sup>
-        </p>
+        <div className="flex justify-between p-5 align-middle">
+          <p className="flex items-center align-middle text-lg">
+            alex <sup>j</sup>
+          </p>
+          <ModeToggle />
+        </div>
         <Separator className="flex" />
       </div>
       <div className="flex flex-1 flex-col overflow-hidden md:flex-row">
