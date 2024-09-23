@@ -4,13 +4,13 @@ import { Separator } from "@/components/ui/separator";
 export default function App() {
   return (
     <Layout>
-      <div className="flex-col md:flex-row flex flex-1">
+      <div className="flex flex-1 flex-col md:flex-row">
         <div className="flex flex-1 flex-col gap-5 p-10">
-          <p className="flex items-center text-lg align-middle">
+          <p className="flex items-center align-middle text-lg">
             alex <sup>j</sup>
           </p>
           <Separator className="flex" />
-          <div className="text-5xl md:text-7xl lg:text-9xl xl:text-[180px] font-extrabold leading-none">
+          <div className="text-5xl font-extrabold leading-none md:text-7xl lg:text-9xl xl:text-[180px]">
             <h1>Alex</h1>
             <h1>Jordan</h1>
           </div>
@@ -18,7 +18,7 @@ export default function App() {
             I create useable and accessible web experiences from ideas,
             wireframes, or pixel-perfect designs
           </p>
-          <div className="hidden md:flex flex-col flex-1 justify-center gap-5">
+          <div className="hidden flex-1 flex-col justify-center gap-5 md:flex">
             <p className="underline">About</p>
             <p className="underline">Experience</p>
           </div>
