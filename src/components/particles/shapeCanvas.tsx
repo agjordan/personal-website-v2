@@ -10,32 +10,28 @@ export function ShapeCanvas() {
   const [clicked, setClicked] = useState(false);
   const context = canvas?.getContext("2d");
 
-  setTimeout(() => {
-    if (!clicked) {
-      setRandom(false);
-    }
-  }, 2000);
-
-  const doc = document.querySelector("#root");
-  doc?.addEventListener("click", () => {
-    setRandom(!random);
-    setClicked(true);
-  });
-
   useEffect(() => {
     const animationFrame = requestAnimationFrame(render);
 
     setCanvas(canvasRef.current);
+
+    function handleClick() {
+      setRandom(!random);
+      setClicked(true);
+    }
+
+    const doc = document.querySelector("#root");
+    doc?.addEventListener("click", handleClick);
 
     if (!context) {
       return;
     }
 
     const cube = new Cube({
-      x: context.canvas.width * 0.7,
-      y: context.canvas.height * 0.5,
-      z: Math.min(context.canvas.width) * 0.5,
-      size: 200,
+      x: context.canvas.width * 0.3,
+      y: context.canvas.height * 0.7,
+      z: context.canvas.width * 0.5,
+      size: 150,
       context,
     });
 
@@ -52,12 +48,13 @@ export function ShapeCanvas() {
 
     return () => {
       cancelAnimationFrame(animationFrame);
+      doc?.removeEventListener("click", handleClick);
     };
-  }, [canvas, context, random]);
+  }, [canvas, clicked, context, random]);
 
   return (
     <Canvas
-      className="absolute -z-10 opacity-55"
+      className="absolute -z-10 opacity-65"
       canvasref={canvasRef}
       height={window.innerHeight}
       width={window.innerWidth}
