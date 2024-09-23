@@ -3,9 +3,11 @@ import { ShapeCanvas } from "@/components/particles/shapeCanvas";
 
 export function Layout({ children }: PropsWithChildren) {
   return (
-    <div className="flex h-screen min-h-0 w-screen overflow-y-auto">
+    <div className="flex h-screen w-screen">
       <ShapeCanvas />
-      <div className="flex flex-1">{children}</div>
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        {children}
+      </div>
     </div>
   );
 }

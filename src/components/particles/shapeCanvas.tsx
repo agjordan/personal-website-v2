@@ -54,7 +54,7 @@ export function ShapeCanvas() {
 
   return (
     <Canvas
-      className="absolute -z-10 opacity-65"
+      className="absolute -z-10 opacity-55"
       canvasref={canvasRef}
       height={window.innerHeight}
       width={window.innerWidth}
