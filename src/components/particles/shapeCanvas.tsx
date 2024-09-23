@@ -40,7 +40,7 @@ export function ShapeCanvas() {
     const cube = new Cube({
       x: context.canvas.width * 0.3,
       y: context.canvas.height * 0.7,
-      z: context.canvas.width * 0.5,
+      z: Math.min(context.canvas.width, context.canvas.height) * 0.8,
       size: 150,
       context,
     });

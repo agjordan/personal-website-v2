@@ -147,5 +147,5 @@ function randomInt(max: number) {
 }
 
 function getSize(number: number) {
-  return (number / window.innerWidth) * 6;
+  return (number / Math.max(window.innerWidth, window.innerHeight)) * 6;
 }

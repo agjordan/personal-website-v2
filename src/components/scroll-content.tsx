@@ -1,6 +1,8 @@
 import { SectionId } from "@/App";
 import useOnScreen from "@/lib/useOnScreen";
 import { Dispatch, SetStateAction, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "./ui/badge";
 
 type ScrollContentProps = {
   setVisibleSection: Dispatch<SetStateAction<string>>;
@@ -87,50 +89,92 @@ function About() {
 
 function Experience() {
   return (
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea
-      voluptates culpa modi ratione iste accusamus sequi, eveniet blanditiis
-      suscipit odit consectetur quibusdam laboriosam maxime eum molestiae ipsum
-      repellat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
-      ab ea voluptates culpa modi ratione iste accusamus sequi, eveniet
-      blanditiis suscipit odit consectetur quibusdam laboriosam maxime eum
-      molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet blanditiis suscipit odit consectetur quibusdam laboriosam
-      maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
-      sequi, eveniet
-    </p>
+    <>
+      <ExperienceDetail
+        date="10/22—10/24"
+        title="Software Engineer"
+        workplace="Holistic AI"
+        description="At Holistic AI, I led the front-end development of 
+        several applications from inception, including a platform for auditing 
+        and monitoring large language models (LLMs) and a system to audit 
+        Automated Environmental Decision Tools (AEDT) in compliance with NYC 
+        Local Law 144. In addition to building new applications, I refactored 
+        and optimized existing projects, modularizing the code to enhance readability 
+        and maintainability. While my primary focus was on the front-end, 
+        I also contributed to back-end development, particularly using TypeScript and Python, 
+        to ensure seamless integration across the stack."
+        techs={[
+          "TypeScript",
+          "HTML & CSS",
+          "React",
+          "Node.js",
+          "Python",
+          "Java",
+        ]}
+      />
+      <ExperienceDetail
+        date="12/21—06/22"
+        title="Software Engineer"
+        workplace="Clim8"
+        description="sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa modi
+      ratione iste accusamus sequi, eveniet blanditiis suscipit odit consectetur
+      quibusdam laboriosam maxime eum molestiae ipsum repellat."
+        techs={["TypeScript", "HTML & CSS", "React Native", "Jest"]}
+      />
+      <ExperienceDetail
+        date="01/21—11/21"
+        title="Junior Full Stack Developer"
+        workplace="_nology"
+        description="sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa modi
+      ratione iste accusamus sequi, eveniet blanditiis suscipit odit consectetur
+      quibusdam laboriosam maxime eum molestiae ipsum repellat."
+        techs={["Javascript", "React", "HTML & CSS"]}
+      />
+      <ExperienceDetail
+        date="01/21—11/21"
+        title="Product Manager"
+        workplace="Pass the Keys"
+        description="sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa modi
+      ratione iste accusamus sequi, eveniet blanditiis suscipit odit consectetur
+      quibusdam laboriosam maxime eum molestiae ipsum repellat."
+        techs={["Python", "SQL", "HTML & CSS"]}
+      />
+      <Button variant="link" className="self-start">
+        See all experience
+      </Button>
+    </>
+  );
+}
+
+type ExperienceDetailProps = {
+  date: string;
+  title: string;
+  workplace: string;
+  description: string;
+  techs: string[];
+};
+function ExperienceDetail({
+  date,
+  title,
+  description,
+  workplace,
+  techs,
+}: ExperienceDetailProps) {
+  return (
+    <div className="grid grid-cols-5 gap-2">
+      <div className="text-nowrap">{date}</div>
+      <div className="col-span-4 flex flex-col">
+        <div>
+          {title}, <b>{workplace}</b>
+        </div>
+        <div>{description}</div>
+        <div className="flex flex-wrap gap-1">
+          {techs.map((tech) => (
+            <Badge key={tech}>{tech}</Badge>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -162,24 +206,6 @@ function Projects() {
       consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
       ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
       culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet
     </div>
   );
 }

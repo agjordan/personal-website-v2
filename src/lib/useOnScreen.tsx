@@ -7,7 +7,7 @@ export default function useOnScreen(ref: RefObject<HTMLElement>) {
     () =>
       new IntersectionObserver(
         ([entry]) => setIntersecting(entry.isIntersecting),
-        { threshold: 0.7 },
+        { threshold: 0.8 },
       ),
     [],
   );
