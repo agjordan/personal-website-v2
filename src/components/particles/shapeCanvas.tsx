@@ -49,7 +49,7 @@ export function ShapeCanvas() {
 
     function render(animationFrame: number) {
       if (context) {
-        context.fillStyle = darkMode ? "yellow" : "purple";
+        context.fillStyle = darkMode ? "white" : "black";
         cube.move(animationFrame, random);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         cube.draw(random);
