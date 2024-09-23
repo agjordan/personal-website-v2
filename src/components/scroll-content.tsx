@@ -1,17 +1,65 @@
-export function ScrollContent() {
+import { SectionId } from "@/App";
+import useOnScreen from "@/lib/useOnScreen";
+import { Dispatch, SetStateAction, useRef } from "react";
+
+type ScrollContentProps = {
+  setVisibleSection: Dispatch<SetStateAction<string>>;
+};
+export function ScrollContent({ setVisibleSection }: ScrollContentProps) {
   return (
     <div className="flex flex-1 flex-col gap-10">
-      <About />
-      <Experience />
-      <Projects />
+      <Section
+        setVisibleSection={setVisibleSection}
+        sectionTitle={"About"}
+        sectionId={"about"}
+        content={<About />}
+      />
+      <Section
+        setVisibleSection={setVisibleSection}
+        sectionTitle={"Experience"}
+        sectionId={"experience"}
+        content={<Experience />}
+      />
+      <Section
+        setVisibleSection={setVisibleSection}
+        sectionTitle={"Projects"}
+        sectionId={"projects"}
+        content={<Projects />}
+      />
+    </div>
+  );
+}
+
+type SectionProps = {
+  setVisibleSection: Dispatch<SetStateAction<string>>;
+  sectionTitle: string;
+  sectionId: SectionId;
+  content: JSX.Element;
+};
+function Section({
+  setVisibleSection,
+  sectionTitle,
+  sectionId,
+  content,
+}: SectionProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(ref);
+
+  if (isVisible) {
+    setVisibleSection(sectionId);
+  }
+
+  return (
+    <div id={sectionId} className="flex flex-col gap-4 md:pt-10" ref={ref}>
+      <SectionTitle title={sectionTitle} />
+      {content}
     </div>
   );
 }
 
 function About() {
   return (
-    <div id="about" className="flex flex-col md:pt-10">
-      <SectionTitle title="About" />
+    <>
       <p>
         I'm a London-based software engineer with a background in product
         management and a passion for creating and delivering user-centric
@@ -33,14 +81,13 @@ function About() {
         where I can take on interesting challenges, make a quick impact, and
         continue growing.
       </p>
-    </div>
+    </>
   );
 }
 
 function Experience() {
   return (
-    <div id="experience">
-      <SectionTitle title="Experience" />
+    <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea
       voluptates culpa modi ratione iste accusamus sequi, eveniet blanditiis
       suscipit odit consectetur quibusdam laboriosam maxime eum molestiae ipsum
@@ -83,14 +130,13 @@ function Experience() {
       maxime eum molestiae ipsum repellat.Lorem ipsum dolor sit amet consectetur
       adipisicing elit. Dolor ab ea voluptates culpa modi ratione iste accusamus
       sequi, eveniet
-    </div>
+    </p>
   );
 }
 
 function Projects() {
   return (
-    <div id="projects">
-      <SectionTitle title="About" />
+    <div>
       Spent the last 2 years building all the things at HAI. But here are some
       older projects from when I was learning JS/React <br /> Lorem ipsum dolor
       sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa modi

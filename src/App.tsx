@@ -2,13 +2,21 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
 import { ScrollContent } from "./components/scroll-content";
+import { useState } from "react";
+import { cn } from "./lib/utils";
 
-type Section = "about" | "experience" | "projects";
+export type SectionId = "about" | "experience" | "projects";
 
 export default function App() {
-  function scrollToHash(section: Section) {
+  const [visibleSection, setVisibleSection] = useState("about");
+
+  function scrollToHash(section: SectionId) {
     const element = document.getElementById(section);
     element?.scrollIntoView();
+  }
+  function handleClick(id: SectionId) {
+    scrollToHash(id);
+    setVisibleSection(id);
   }
 
   return (
@@ -24,37 +32,52 @@ export default function App() {
             I create useable and accessible web experiences from ideas,
             wireframes, or pixel-perfect designs
           </p>
-          <div className="hidden flex-1 flex-col items-start justify-center gap-5 md:flex">
-            <Button variant="link" asChild>
-              <a
-                className="cursor-pointer underline"
-                onClick={() => scrollToHash("about")}
-              >
-                About
-              </a>
-            </Button>
-            <Button variant="link" asChild>
-              <a
-                className="cursor-pointer underline"
-                onClick={() => scrollToHash("experience")}
-              >
-                Experience
-              </a>
-            </Button>
-            <Button variant="link" asChild>
-              <a
-                className="cursor-pointer underline"
-                onClick={() => scrollToHash("projects")}
-              >
-                Projects
-              </a>
-            </Button>
+          <div
+            className="hidden flex-1 flex-col items-start justify-center gap-5 md:flex"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <LinkButton
+              text="About"
+              onClick={() => handleClick("about")}
+              isVisible={visibleSection === "about"}
+            />
+            <LinkButton
+              text="Experience"
+              onClick={() => handleClick("experience")}
+              isVisible={visibleSection === "experience"}
+            />
+            <LinkButton
+              text="Projects"
+              onClick={() => handleClick("projects")}
+              isVisible={visibleSection === "projects"}
+            />
           </div>
         </div>
         <div className="flex flex-1 px-10 md:overflow-y-auto">
-          <ScrollContent />
+          <ScrollContent setVisibleSection={setVisibleSection} />
         </div>
       </div>
     </Layout>
+  );
+}
+
+type LinkButtonProps = {
+  text: string;
+  onClick: () => void;
+  isVisible: boolean;
+};
+
+function LinkButton({ text, onClick, isVisible }: LinkButtonProps) {
+  return (
+    <Button variant="link" asChild>
+      <a
+        className={cn("cursor-pointer", {
+          "font-semibold underline": isVisible,
+        })}
+        onClick={onClick}
+      >
+        {`${isVisible ? "————" : "——"}${text}`}
+      </a>
+    </Button>
   );
 }
