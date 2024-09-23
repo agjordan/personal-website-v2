@@ -6,8 +6,21 @@ import { Cube } from "./cube";
 export function ShapeCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [canvas, setCanvas] = useState(canvasRef.current);
-  const [random, setRandom] = useState(false);
+  const [random, setRandom] = useState(true);
+  const [clicked, setClicked] = useState(false);
   const context = canvas?.getContext("2d");
+
+  setTimeout(() => {
+    if (!clicked) {
+      setRandom(false);
+    }
+  }, 2000);
+
+  const doc = document.querySelector("#root");
+  doc?.addEventListener("click", () => {
+    setRandom(!random);
+    setClicked(true);
+  });
 
   useEffect(() => {
     const animationFrame = requestAnimationFrame(render);
@@ -42,19 +55,9 @@ export function ShapeCanvas() {
     };
   }, [canvas, context, random]);
 
-  function resizeCanvas() {
-    if (!canvas || !context) {
-      return;
-    }
-    context.canvas.height = window.innerHeight;
-    context.canvas.width = window.innerWidth;
-  }
-
-  window.addEventListener("resize", resizeCanvas, false);
-
   return (
     <Canvas
-      className="absolute"
+      className="absolute -z-10 opacity-55"
       canvasref={canvasRef}
       height={window.innerHeight}
       width={window.innerWidth}
