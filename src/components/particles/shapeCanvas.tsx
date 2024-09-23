@@ -8,7 +8,7 @@ export function ShapeCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [canvas, setCanvas] = useState(canvasRef.current);
-  const [random, setRandom] = useState(true);
+  const [random, setRandom] = useState(false);
   const context = canvas?.getContext("2d");
 
   const { theme } = useTheme();
@@ -29,18 +29,28 @@ export function ShapeCanvas() {
     function handleClick() {
       setRandom(!random);
     }
+    function handleScroll(this: HTMLElement, _ev: Event) {
+      if (this.scrollTop < 10) {
+        setRandom(false);
+      } else {
+        setRandom(true);
+      }
+    }
 
     const doc = document.querySelector("#root");
+    const scrollElement = document.querySelector("#scroll");
+
     doc?.addEventListener("click", handleClick);
+    scrollElement?.addEventListener("scroll", handleScroll);
 
     if (!context) {
       return;
     }
 
     const cube = new Cube({
-      x: context.canvas.width * 0.3,
-      y: context.canvas.height * 0.7,
-      z: Math.min(context.canvas.width, context.canvas.height) * 0.8,
+      x: context.canvas.width * 0.7,
+      y: context.canvas.height * 0.3,
+      z: Math.max(context.canvas.width, context.canvas.height) * 0.5,
       size: 150,
       context,
     });
@@ -60,6 +70,7 @@ export function ShapeCanvas() {
     return () => {
       cancelAnimationFrame(animationFrame);
       doc?.removeEventListener("click", handleClick);
+      scrollElement?.removeEventListener("scroll", handleScroll);
     };
   }, [canvas, context, random, darkMode]);
 

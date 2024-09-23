@@ -9,7 +9,7 @@ type ScrollContentProps = {
 };
 export function ScrollContent({ setVisibleSection }: ScrollContentProps) {
   return (
-    <div className="flex flex-1 flex-col gap-10">
+    <div className="mt-96 flex flex-1 flex-col gap-10">
       <Section
         setVisibleSection={setVisibleSection}
         sectionTitle={"About"}
