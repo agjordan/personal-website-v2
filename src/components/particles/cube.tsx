@@ -9,7 +9,7 @@ export class Cube extends RenderableObject {
   speedY: number = 0.015;
   speedZ: number = 0.01;
   lastTime = 0;
-  divisions = 20;
+  divisions = 10;
   constructor({
     x,
     y,

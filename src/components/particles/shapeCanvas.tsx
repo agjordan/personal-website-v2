@@ -9,7 +9,6 @@ export function ShapeCanvas() {
 
   const [canvas, setCanvas] = useState(canvasRef.current);
   const [random, setRandom] = useState(true);
-  const [clicked, setClicked] = useState(false);
   const context = canvas?.getContext("2d");
 
   const { theme } = useTheme();
@@ -29,7 +28,6 @@ export function ShapeCanvas() {
 
     function handleClick() {
       setRandom(!random);
-      setClicked(true);
     }
 
     const doc = document.querySelector("#root");
@@ -63,7 +61,7 @@ export function ShapeCanvas() {
       cancelAnimationFrame(animationFrame);
       doc?.removeEventListener("click", handleClick);
     };
-  }, [canvas, clicked, context, random, darkMode]);
+  }, [canvas, context, random, darkMode]);
 
   return (
     <Canvas
