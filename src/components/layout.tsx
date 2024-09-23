@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { ShapeCanvas } from "@/components/particles/shapeCanvas";
-import { ThemeProvider } from "../theme-provider";
+import { ThemeProvider } from "./theme-provider";
 
 export function Layout({ children }: PropsWithChildren) {
   return (
