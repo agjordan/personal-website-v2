@@ -25,8 +25,7 @@ export default function App() {
       <div className="flex flex-1 flex-col overflow-auto md:flex-row md:overflow-hidden">
         <div className="flex flex-col gap-5 p-10 md:flex-1">
           <div className="text-5xl font-extrabold leading-none md:text-7xl lg:text-9xl xl:text-[180px]">
-            <h1>Alex</h1>
-            <h1>Jordan</h1>
+            <h1>Alex Jordan</h1>
           </div>
           <p>
             I create useable and accessible web experiences from ideas,
@@ -54,7 +53,7 @@ export default function App() {
           </div>
         </div>
         <div className="flex flex-1 px-10 md:overflow-y-auto" id="scroll">
-          <ScrollContent setVisibleSection={setVisibleSection} />
+          <ScrollContent />
         </div>
       </div>
     </Layout>

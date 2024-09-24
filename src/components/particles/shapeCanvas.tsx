@@ -51,7 +51,7 @@ export function ShapeCanvas() {
       x: context.canvas.width * 0.7,
       y: context.canvas.height * 0.3,
       z: Math.max(context.canvas.width, context.canvas.height) * 0.5,
-      size: 150,
+      size: 180,
       context,
     });
 
