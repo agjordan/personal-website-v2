@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
 import { ScrollContent } from "./components/scroll-content";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "./lib/utils";
 
 export type SectionId = "about" | "experience" | "projects";
@@ -18,6 +18,34 @@ export default function App() {
     scrollToHash(id);
     setVisibleSection(id);
   }
+
+  const observer = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries) => {
+      const visibleSection = entries.find(
+        (entry) => entry.isIntersecting,
+      )?.target;
+
+      //Update state with the visible section ID
+      if (visibleSection) {
+        console.log(visibleSection?.id);
+        setVisibleSection(visibleSection.id);
+      }
+    });
+
+    const sections = document.querySelectorAll("section");
+
+    sections.forEach((section) => {
+      observer.current?.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.current?.unobserve(section);
+      });
+    };
+  }, []);
 
   return (
     <Layout>
@@ -52,7 +80,7 @@ export default function App() {
             />
           </div>
         </div>
-        <ScrollContent setVisibleSection={setVisibleSection} />
+        <ScrollContent />
       </div>
     </Layout>
   );

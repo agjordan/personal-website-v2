@@ -1,32 +1,20 @@
 import { SectionId } from "@/App";
-import useOnScreen from "@/lib/useOnScreen";
-import { Dispatch, SetStateAction, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge";
 
-type ScrollContentProps = {
-  setVisibleSection: Dispatch<SetStateAction<string>>;
-};
-export function ScrollContent({ setVisibleSection }: ScrollContentProps) {
+export function ScrollContent() {
   return (
     <div
       className="flex flex-1 flex-col gap-20 px-10 md:overflow-y-auto md:pt-96"
       id="scroll"
     >
+      <Section sectionTitle={"About"} sectionId={"about"} content={<About />} />
       <Section
-        setVisibleSection={setVisibleSection}
-        sectionTitle={"About"}
-        sectionId={"about"}
-        content={<About />}
-      />
-      <Section
-        setVisibleSection={setVisibleSection}
         sectionTitle={"Experience"}
         sectionId={"experience"}
         content={<Experience />}
       />
       <Section
-        setVisibleSection={setVisibleSection}
         sectionTitle={"Projects"}
         sectionId={"projects"}
         content={<Projects />}
@@ -36,29 +24,16 @@ export function ScrollContent({ setVisibleSection }: ScrollContentProps) {
 }
 
 type SectionProps = {
-  setVisibleSection: Dispatch<SetStateAction<string>>;
   sectionTitle: string;
   sectionId: SectionId;
   content: JSX.Element;
 };
-function Section({
-  setVisibleSection,
-  sectionTitle,
-  sectionId,
-  content,
-}: SectionProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-
-  if (isVisible) {
-    setVisibleSection(sectionId);
-  }
-
+function Section({ sectionTitle, sectionId, content }: SectionProps) {
   return (
-    <div id={sectionId} className="flex flex-col gap-4" ref={ref}>
+    <section id={sectionId} className="flex flex-col gap-4">
       <SectionTitle title={sectionTitle} />
       {content}
-    </div>
+    </section>
   );
 }
 
@@ -85,6 +60,11 @@ function About() {
         and Ruby. I'm driven by big goals and thrive in fast-paced environments
         where I can take on interesting challenges, make a quick impact, and
         continue growing.
+      </p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, quo
+        rerum totam accusantium corrupti, quae, molestias deleniti ut inventore
+        ea ducimus est quam nihil voluptatibus. Earum natus quidem non aliquam!
       </p>
     </>
   );
