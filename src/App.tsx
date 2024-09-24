@@ -52,9 +52,7 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="flex flex-1 px-10 md:overflow-y-auto" id="scroll">
-          <ScrollContent setVisibleSection={setVisibleSection} />
-        </div>
+        <ScrollContent setVisibleSection={setVisibleSection} />
       </div>
     </Layout>
   );
