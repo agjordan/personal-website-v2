@@ -94,15 +94,7 @@ function Experience() {
         date="10/22—10/24"
         title="Software Engineer"
         workplace="Holistic AI"
-        description="At Holistic AI, I led the front-end development of 
-        several applications from inception, including a platform for auditing 
-        and monitoring large language models (LLMs) and a system to audit 
-        Automated Environmental Decision Tools (AEDT) in compliance with NYC 
-        Local Law 144. In addition to building new applications, I refactored 
-        and optimized existing projects, modularizing the code to enhance readability 
-        and maintainability. While my primary focus was on the front-end, 
-        I also contributed to back-end development, particularly using TypeScript and Python, 
-        to ensure seamless integration across the stack."
+        description="At Holistic AI, I led the front-end development of several applications from inception, including a platform for auditing and monitoring large language models (LLMs) and a system to audit Automated Environmental Decision Tools (AEDT) in compliance with NYC Local Law 144. In addition to building new applications, I refactored and optimized existing projects, modularizing the code to enhance readability and maintainability. While my primary focus was on the front-end, I also contributed to back-end development, particularly using TypeScript and Python, to ensure seamless integration across the stack."
         techs={[
           "TypeScript",
           "HTML & CSS",
@@ -116,31 +108,27 @@ function Experience() {
         date="12/21—06/22"
         title="Software Engineer"
         workplace="Clim8"
-        description="sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa modi
-      ratione iste accusamus sequi, eveniet blanditiis suscipit odit consectetur
-      quibusdam laboriosam maxime eum molestiae ipsum repellat."
+        description="At Clim8, I gained valuable mobile development experience while contributing to the Android and iOS applications. I delivered a wide range of features, including charting historical performance data, enabling ISA transfers, managing Junior ISA accounts with risk and suitability assessments, and building a complex account closure flow. Focusing primarily on React Native and TypeScript, I developed these features and ensured they were thoroughly tested with Jest and React Native Testing Library. This role allowed me to sharpen my mobile development skills while supporting Clim8's mission of promoting sustainable investments."
         techs={["TypeScript", "HTML & CSS", "React Native", "Jest"]}
       />
       <ExperienceDetail
         date="01/21—11/21"
-        title="Junior Full Stack Developer"
+        title="Junior Developer"
         workplace="_nology"
-        description="sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa modi
-      ratione iste accusamus sequi, eveniet blanditiis suscipit odit consectetur
-      quibusdam laboriosam maxime eum molestiae ipsum repellat."
+        description="At _nology, I completed an intensive 12-week boot camp focused on web development technologies. Following the boot camp, I was seconded to Sugar (add-sugar.io) for 6 months as a Junior Developer, where I built their internal credit management portal. This project allowed me to work across the stack using React, TypeScript, and Python, while also integrating AWS Lambda functions to handle key backend processes. This experience helped me solidify my foundational development skills and gain practical exposure to cloud-based solutions."
         techs={["Javascript", "React", "HTML & CSS"]}
       />
       <ExperienceDetail
         date="01/21—11/21"
         title="Product Manager"
         workplace="Pass the Keys"
-        description="sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa modi
-      ratione iste accusamus sequi, eveniet blanditiis suscipit odit consectetur
-      quibusdam laboriosam maxime eum molestiae ipsum repellat."
+        description="At Pass the Keys, I introduced Agile methodologies to streamline the development process, significantly shortening the release cycle for the engineering team. Leading the team, I oversaw the development of multiple high-impact features, including pricing optimization algorithms, pricing adjustment tools, and professional photography upload tools, achieving an ROI of over 150% within a year. During this time, I also taught myself SQL and Python to perform data analysis, further enhancing decision-making and driving product improvements."
         techs={["Python", "SQL", "HTML & CSS"]}
       />
-      <Button variant="link" className="self-start">
-        See all experience
+      <Button variant="link" className="self-start" asChild>
+        <a href="src/assets/Alex-Jordan-CV.pdf" download="Alex-Jordan-CV.pdf">
+          See all experience
+        </a>
       </Button>
     </>
   );
@@ -161,9 +149,9 @@ function ExperienceDetail({
   techs,
 }: ExperienceDetailProps) {
   return (
-    <div className="grid grid-cols-5 gap-2">
+    <div className="grid grid-cols-3 gap-2 lg:grid-cols-4">
       <div className="text-nowrap">{date}</div>
-      <div className="col-span-4 flex flex-col">
+      <div className="col-span-2 flex flex-col gap-4 lg:col-span-3">
         <div>
           {title}, <b>{workplace}</b>
         </div>
