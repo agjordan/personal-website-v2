@@ -220,7 +220,8 @@ function ProjectDetail({
       <img
         src={thumbnail}
         alt="thumbnail"
-        className="w-full object-contain opacity-65 md:w-8"
+        width={150}
+        className="object-contain opacity-65"
       />
     </div>
   );
