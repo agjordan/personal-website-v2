@@ -10,4 +10,5 @@ export default defineConfig({
     },
   },
   base: "/personal-website-v2/",
+  publicDir: "public",
 });

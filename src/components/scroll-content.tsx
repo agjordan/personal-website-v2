@@ -2,6 +2,9 @@ import { SectionId } from "@/App";
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge";
 import { Link } from "lucide-react";
+import portfolio from "/assets/portfolio.png";
+import maze from "/assets/maze.png";
+import recipe from "/assets/recipe.png";
 
 export function ScrollContent() {
   return (
@@ -63,11 +66,6 @@ function About() {
         where I can take on interesting challenges, make a quick impact, and
         continue growing.
       </p>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, quo
-        rerum totam accusantium corrupti, quae, molestias deleniti ut inventore
-        ea ducimus est quam nihil voluptatibus. Earum natus quidem non aliquam!
-      </p>
     </>
   );
 }
@@ -118,7 +116,7 @@ function Experience() {
         techs={["Python", "SQL", "HTML & CSS"]}
       />
       <Button variant="link" className="self-start" asChild>
-        <a href="src/public/Alex-Jordan-CV.pdf" download="Alex-Jordan-CV.pdf">
+        <a href="./assets/Alex-Jordan-CV.pdf" download="Alex-Jordan-CV.pdf">
           See all experience
         </a>
       </Button>
@@ -141,7 +139,7 @@ function ExperienceDetail({
   techs,
 }: ExperienceDetailProps) {
   return (
-    <div className="grid grid-cols-3 gap-2 lg:grid-cols-4">
+    <div className="flex grid-cols-3 flex-col gap-2 md:grid lg:grid-cols-4">
       <div className="text-nowrap">{date}</div>
       <div className="col-span-2 flex flex-col gap-4 lg:col-span-3">
         <div>
@@ -175,19 +173,19 @@ function Projects() {
         to software engineering today.
       </p>
       <ProjectDetail
-        thumbnail="src/public/maze.png"
+        thumbnail={maze}
         title="Maze Creator and Solver"
         description="A project I completed to learn more about data structures and algorithms. The app can generate two different kinds of mazes with two very different approaches. They are then solved using Djikstra's algorithms."
         link="https://agjordan.github.io/maze-generator-solver/"
       />
       <ProjectDetail
-        thumbnail="src/public/recipe.png"
+        thumbnail={recipe}
         title="Save my Recipe"
         description="A simple app to save recipes from food52.com (my favourite cooking website at the time). The endpoint deployed on Heroku that processed the website and enabled saving the recipe no longer works since Heroku killed their free tier. I will one day fix this ;)"
         link="https://recipe-saver-f431f.web.app/login"
       />
       <ProjectDetail
-        thumbnail="src/public/portfolio.png"
+        thumbnail={portfolio}
         title="Old portfolio website (v1)"
         description="My first portfolio website, here for posteriority so you can see how much I have improved."
         link="https://agjordan.github.io/portfolio-website/"
@@ -222,8 +220,7 @@ function ProjectDetail({
       <img
         src={thumbnail}
         alt="thumbnail"
-        width={150}
-        className="object-contain opacity-65"
+        className="w-full object-contain opacity-65 md:w-8"
       />
     </div>
   );
