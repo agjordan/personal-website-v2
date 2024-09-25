@@ -1,11 +1,12 @@
 import { SectionId } from "@/App";
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge";
+import { Link } from "lucide-react";
 
 export function ScrollContent() {
   return (
     <div
-      className="flex flex-1 flex-col gap-20 px-10 md:overflow-y-auto md:pt-96"
+      className="flex flex-1 flex-col gap-28 p-10 md:overflow-y-auto md:pt-96"
       id="scroll"
     >
       <Section sectionTitle={"About"} sectionId={"about"} content={<About />} />
@@ -30,7 +31,7 @@ type SectionProps = {
 };
 function Section({ sectionTitle, sectionId, content }: SectionProps) {
   return (
-    <section id={sectionId} className="flex flex-col gap-4">
+    <section id={sectionId} className="flex flex-col gap-4 md:gap-8">
       <SectionTitle title={sectionTitle} />
       {content}
     </section>
@@ -68,6 +69,13 @@ function About() {
       </p>
     </>
   );
+}
+
+type SectionTitleProps = {
+  title: string;
+};
+function SectionTitle({ title }: SectionTitleProps) {
+  return <h3 className="text-lg underline md:hidden">{title}</h3>;
 }
 
 function Experience() {
@@ -151,39 +159,71 @@ function ExperienceDetail({
 
 function Projects() {
   return (
-    <div>
-      Spent the last 2 years building all the things at HAI. But here are some
-      older projects from when I was learning JS/React <br /> Lorem ipsum dolor
-      sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa modi
-      ratione iste accusamus sequi, eveniet blanditiis suscipit odit consectetur
-      quibusdam laboriosam maxime eum molestiae ipsum repellat. Lorem ipsum
-      dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates culpa
-      modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-      consectetur quibusdam laboriosam maxime eum molestiae ipsum repellat.Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Dolor ab ea voluptates
-      culpa modi ratione iste accusamus sequi, eveniet blanditiis suscipit odit
-    </div>
+    <>
+      <p>
+        During the past two years at Holistic AI, I've been deeply focused on
+        tackling challenging problems and driving impactful solutions in
+        fast-paced environments. This period has been both demanding and
+        rewarding, leaving me with limited opportunities to explore side
+        projects or experiment with new technologies outside of my professional
+        work. However, I encourage you to take a look at some of my earlier
+        projects listed below. While they may not reflect my most recent work,
+        they offer a glimpse into my journey as a developer and how much I've
+        grown over the years. Revisiting these projects is a reminder of the
+        foundational skills and experiences that continue to shape my approach
+        to software engineering today.
+      </p>
+      <ProjectDetail
+        thumbnail="src/assets/maze.png"
+        title="Maze Creator and Solver"
+        description="A project I completed to learn more about data structures and algorithms. The app can generate two different kinds of mazes with two very different approaches. They are then solved using Djikstra's algorithms."
+        link="https://agjordan.github.io/maze-generator-solver/"
+      />
+      <ProjectDetail
+        thumbnail="src/assets/recipe.png"
+        title="Save my Recipe"
+        description="A simple app to save recipes from food52.com (my favourite cooking website at the time). The endpoint deployed on Heroku that processed the website and enabled saving the recipe no longer works since Heroku killed their free tier. I will one day fix this ;)"
+        link="https://recipe-saver-f431f.web.app/login"
+      />
+      <ProjectDetail
+        thumbnail="src/assets/portfolio.png"
+        title="Old portfolio website (v1)"
+        description="My first portfolio website, here for posteriority so you can see how much I have improved."
+        link="https://agjordan.github.io/portfolio-website/"
+      />
+    </>
   );
 }
-
-type SectionTitleProps = {
+type ProjectDetailProps = {
+  thumbnail: string;
   title: string;
+  description: string;
+  link: string;
 };
-function SectionTitle({ title }: SectionTitleProps) {
-  return <h3 className="text-lg underline md:hidden">{title}</h3>;
+
+function ProjectDetail({
+  thumbnail,
+  title,
+  description,
+  link,
+}: ProjectDetailProps) {
+  return (
+    <div className="grid grid-cols-3 gap-4 lg:grid-cols-4">
+      <img
+        src={thumbnail}
+        alt="thumbnail"
+        width={150}
+        className="object-contain opacity-65"
+      />
+      <div className="col-span-3 flex flex-col gap-2 lg:col-span-3">
+        <div className="flex items-center gap-5">
+          <h3 className="text-lg font-semibold">{title}</h3>
+          <a href={link} target="_blank" className="italic">
+            <Link size={15} />
+          </a>
+        </div>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
 }

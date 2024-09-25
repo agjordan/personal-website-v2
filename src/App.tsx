@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { ScrollContent } from "./components/scroll-content";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "./lib/utils";
+import { Linkedin } from "lucide-react";
 
 export type SectionId = "about" | "experience" | "projects";
 
@@ -23,13 +24,11 @@ export default function App() {
 
   useEffect(() => {
     observer.current = new IntersectionObserver((entries) => {
-      const visibleSection = entries.find(
-        (entry) => entry.isIntersecting,
-      )?.target;
+      const visibleSection = entries.find((entry) => entry.isIntersecting, {
+        threshold: 0.3,
+      })?.target;
 
-      //Update state with the visible section ID
       if (visibleSection) {
-        console.log(visibleSection?.id);
         setVisibleSection(visibleSection.id);
       }
     });
@@ -79,10 +78,21 @@ export default function App() {
               isVisible={visibleSection === "projects"}
             />
           </div>
+          <IconBar />
         </div>
         <ScrollContent />
       </div>
     </Layout>
+  );
+}
+
+function IconBar() {
+  return (
+    <div className="flex gap-4">
+      <a href="https://www.linkedin.com/in/alexandrejordan/" target="_blank">
+        <Linkedin />
+      </a>
+    </div>
   );
 }
 
