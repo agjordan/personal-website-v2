@@ -209,12 +209,6 @@ function ProjectDetail({
 }: ProjectDetailProps) {
   return (
     <div className="grid grid-cols-3 gap-4 lg:grid-cols-4">
-      <img
-        src={thumbnail}
-        alt="thumbnail"
-        width={150}
-        className="object-contain opacity-65"
-      />
       <div className="col-span-3 flex flex-col gap-2 lg:col-span-3">
         <div className="flex items-center gap-5">
           <h3 className="text-lg font-semibold">{title}</h3>
@@ -224,6 +218,12 @@ function ProjectDetail({
         </div>
         <p>{description}</p>
       </div>
+      <img
+        src={thumbnail}
+        alt="thumbnail"
+        width={150}
+        className="object-contain opacity-65"
+      />
     </div>
   );
 }

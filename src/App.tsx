@@ -106,7 +106,7 @@ function LinkButton({ text, onClick, isVisible }: LinkButtonProps) {
   return (
     <Button variant="link" asChild>
       <a
-        className={cn("cursor-pointer", {
+        className={cn("cursor-pointer tracking-tighter", {
           "font-semibold underline": isVisible,
         })}
         onClick={onClick}
