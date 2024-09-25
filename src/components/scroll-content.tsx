@@ -20,6 +20,7 @@ export function ScrollContent() {
         sectionId={"projects"}
         content={<Projects />}
       />
+      <BuiltUsing />
     </div>
   );
 }
@@ -110,7 +111,7 @@ function Experience() {
         techs={["Javascript", "React", "HTML & CSS"]}
       />
       <ExperienceDetail
-        date="01/21—11/21"
+        date="01/19—01/21"
         title="Product Manager"
         workplace="Pass the Keys"
         description="At Pass the Keys, I introduced Agile methodologies to streamline the development process, significantly shortening the release cycle for the engineering team. Leading the team, I oversaw the development of multiple high-impact features, including pricing optimization algorithms, pricing adjustment tools, and professional photography upload tools, achieving an ROI of over 150% within a year. During this time, I also taught myself SQL and Python to perform data analysis, further enhancing decision-making and driving product improvements."
@@ -225,5 +226,66 @@ function ProjectDetail({
         className="object-contain opacity-65"
       />
     </div>
+  );
+}
+
+function BuiltUsing() {
+  return (
+    <p>
+      This website was built using{" "}
+      <a href="https://reactjs.org" className="font-semibold" target="_blank">
+        React
+      </a>
+      ,{" "}
+      <a
+        href="https://www.typescriptlang.org"
+        className="font-semibold"
+        target="_blank"
+      >
+        Typescript
+      </a>
+      , and{" "}
+      <a
+        href="https://tailwindcss.com"
+        className="font-semibold"
+        target="_blank"
+      >
+        Tailwind CSS
+      </a>
+      , leveraging{" "}
+      <a
+        href="https://ui.shadcn.com/docs"
+        className="font-semibold"
+        target="_blank"
+      >
+        shadcn/ui
+      </a>{" "}
+      for speed and efficiency. <br />A quick wireframe was created in{" "}
+      <a
+        href="https://excalidraw.com"
+        className="font-semibold"
+        target="_blank"
+      >
+        Excalidraw
+      </a>
+      . <br />
+      All copy is set in the{" "}
+      <a
+        href="https://fonts.google.com/specimen/Raleway"
+        className="font-semibold"
+        target="_blank"
+      >
+        Raleway
+      </a>{" "}
+      typeface. <br /> It is hosted on{" "}
+      <a
+        href="https://pages.github.com/"
+        className="font-semibold"
+        target="_blank"
+      >
+        GH pages
+      </a>
+      .
+    </p>
   );
 }
